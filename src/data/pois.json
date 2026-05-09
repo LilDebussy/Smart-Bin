@@ -1,0 +1,456 @@
+[
+  {
+    "id": "1",
+    "name": "Papelera SF-01",
+    "lat": 41.4036,
+    "lng": 2.1744,
+    "description": "Papelera junto a la Sagrada Familia.",
+    "lastPickup": "2026-05-09T08:00:00+02:00",
+    "nextPickup": "2026-05-10T02:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 100,
+      "papel": 75,
+      "plastico": 30,
+      "organico": 80,
+      "resto": 45
+    },
+    "predictedFull": {
+      "cristal": "2026-05-09T18:30:00+02:00",
+      "papel": "2026-05-09T22:00:00+02:00",
+      "organico": "2026-05-09T23:30:00+02:00"
+    },
+    "animals": {
+      "palomas": "alta",
+      "ratas": "media",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "2",
+    "name": "Papelera PG-02",
+    "lat": 41.4145,
+    "lng": 2.1527,
+    "description": "Papelera en la entrada del Park Güell.",
+    "lastPickup": "2026-05-09T09:30:00+02:00",
+    "nextPickup": "2026-05-10T03:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 20,
+      "papel": 80,
+      "plastico": 60,
+      "organico": 30,
+      "resto": 65
+    },
+    "predictedFull": {
+      "papel": "2026-05-09T23:00:00+02:00"
+    },
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "alta"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Papelera CB-03",
+    "lat": 41.3916,
+    "lng": 2.1649,
+    "description": "Papelera en Passeig de Gràcia, frente a Casa Batlló.",
+    "lastPickup": "2026-05-09T07:45:00+02:00",
+    "nextPickup": "2026-05-10T01:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 10,
+      "papel": 20,
+      "plastico": 30,
+      "organico": 45,
+      "resto": 15
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "4",
+    "name": "Papelera LR-04",
+    "lat": 41.3818,
+    "lng": 2.1730,
+    "description": "Papelera central en La Rambla.",
+    "lastPickup": "2026-05-09T06:00:00+02:00",
+    "nextPickup": "2026-05-09T23:30:00+02:00",
+    "wasteLevels": {
+      "cristal": 80,
+      "papel": 95,
+      "plastico": 90,
+      "organico": 100,
+      "resto": 85
+    },
+    "predictedFull": {
+      "cristal": "2026-05-09T22:30:00+02:00",
+      "papel": "2026-05-09T19:00:00+02:00",
+      "plastico": "2026-05-09T20:30:00+02:00",
+      "resto": "2026-05-09T22:00:00+02:00",
+      "organico": "2026-05-09T18:15:00+02:00"
+    },
+    "animals": {
+      "palomas": "alta",
+      "ratas": "alta",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "5",
+    "name": "Papelera PC-05",
+    "lat": 41.3851,
+    "lng": 2.1734,
+    "description": "Papelera en Plaça Catalunya.",
+    "lastPickup": "2026-05-09T10:00:00+02:00",
+    "nextPickup": "2026-05-10T04:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 40,
+      "papel": 85,
+      "plastico": 70,
+      "organico": 60,
+      "resto": 50
+    },
+    "predictedFull": {
+      "papel": "2026-05-09T23:00:00+02:00"
+    },
+    "animals": {
+      "palomas": "alta",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "6",
+    "name": "Papelera BZ-06",
+    "lat": 41.3784,
+    "lng": 2.1925,
+    "description": "Paseo Marítimo de la Barceloneta.",
+    "lastPickup": "2026-05-09T05:00:00+02:00",
+    "nextPickup": "2026-05-10T05:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 75,
+      "papel": 20,
+      "plastico": 85,
+      "organico": 30,
+      "resto": 40
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "media",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "7",
+    "name": "Papelera EB-07",
+    "lat": 41.3860,
+    "lng": 2.1820,
+    "description": "El Born, zona de ocio.",
+    "lastPickup": "2026-05-09T08:30:00+02:00",
+    "nextPickup": "2026-05-10T02:30:00+02:00",
+    "wasteLevels": {
+      "cristal": 90,
+      "papel": 40,
+      "plastico": 50,
+      "organico": 20,
+      "resto": 30
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "8",
+    "name": "Papelera AT-08",
+    "lat": 41.3912,
+    "lng": 2.1805,
+    "description": "Arc de Triomf.",
+    "lastPickup": "2026-05-09T09:00:00+02:00",
+    "nextPickup": "2026-05-10T03:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 50,
+      "papel": 70,
+      "plastico": 65,
+      "organico": 40,
+      "resto": 55
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "9",
+    "name": "Papelera ST-09",
+    "lat": 41.3792,
+    "lng": 2.1396,
+    "description": "Estació de Sants.",
+    "lastPickup": "2026-05-09T07:15:00+02:00",
+    "nextPickup": "2026-05-09T22:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 30,
+      "papel": 60,
+      "plastico": 85,
+      "organico": 50,
+      "resto": 90
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "alta",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "10",
+    "name": "Papelera GR-10",
+    "lat": 41.4025,
+    "lng": 2.1560,
+    "description": "Plaça de la Virreina, Gràcia.",
+    "lastPickup": "2026-05-09T10:30:00+02:00",
+    "nextPickup": "2026-05-10T04:30:00+02:00",
+    "wasteLevels": {
+      "cristal": 45,
+      "papel": 40,
+      "plastico": 35,
+      "organico": 30,
+      "resto": 20
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "11",
+    "name": "Papelera MJ-11",
+    "lat": 41.3685,
+    "lng": 2.1585,
+    "description": "Parc de Montjuïc.",
+    "lastPickup": "2026-05-09T08:00:00+02:00",
+    "nextPickup": "2026-05-10T08:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 15,
+      "papel": 20,
+      "plastico": 25,
+      "organico": 10,
+      "resto": 5
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "alta"
+    }
+  },
+  {
+    "id": "12",
+    "name": "Papelera PN-12",
+    "lat": 41.3970,
+    "lng": 2.2025,
+    "description": "Rambla del Poblenou.",
+    "lastPickup": "2026-05-09T07:30:00+02:00",
+    "nextPickup": "2026-05-10T02:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 30,
+      "papel": 25,
+      "plastico": 40,
+      "organico": 20,
+      "resto": 15
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "13",
+    "name": "Papelera ED-13",
+    "lat": 41.3930,
+    "lng": 2.1700,
+    "description": "Eixample Dret.",
+    "lastPickup": "2026-05-09T08:15:00+02:00",
+    "nextPickup": "2026-05-10T01:30:00+02:00",
+    "wasteLevels": {
+      "cristal": 20,
+      "papel": 30,
+      "plastico": 25,
+      "organico": 40,
+      "resto": 10
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "14",
+    "name": "Papelera EE-14",
+    "lat": 41.3850,
+    "lng": 2.1550,
+    "description": "Eixample Esquerre.",
+    "lastPickup": "2026-05-09T09:00:00+02:00",
+    "nextPickup": "2026-05-10T02:30:00+02:00",
+    "wasteLevels": {
+      "cristal": 25,
+      "papel": 35,
+      "plastico": 20,
+      "organico": 30,
+      "resto": 15
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "15",
+    "name": "Papelera CN-15",
+    "lat": 41.3809,
+    "lng": 2.1228,
+    "description": "Exterior del Camp Nou.",
+    "lastPickup": "2026-05-09T06:30:00+02:00",
+    "nextPickup": "2026-05-10T06:30:00+02:00",
+    "wasteLevels": {
+      "cristal": 10,
+      "papel": 15,
+      "plastico": 20,
+      "organico": 10,
+      "resto": 5
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "16",
+    "name": "Papelera LC-16",
+    "lat": 41.3865,
+    "lng": 2.1340,
+    "description": "Les Corts.",
+    "lastPickup": "2026-05-09T08:30:00+02:00",
+    "nextPickup": "2026-05-10T03:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 15,
+      "papel": 25,
+      "plastico": 15,
+      "organico": 20,
+      "resto": 10
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "17",
+    "name": "Papelera SR-17",
+    "lat": 41.4000,
+    "lng": 2.1200,
+    "description": "Sarrià centre.",
+    "lastPickup": "2026-05-09T10:00:00+02:00",
+    "nextPickup": "2026-05-10T04:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 20,
+      "papel": 20,
+      "plastico": 10,
+      "organico": 25,
+      "resto": 10
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  },
+  {
+    "id": "18",
+    "name": "Papelera PD-18",
+    "lat": 41.3920,
+    "lng": 2.1100,
+    "description": "Pedralbes.",
+    "lastPickup": "2026-05-09T08:00:00+02:00",
+    "nextPickup": "2026-05-10T10:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 5,
+      "papel": 10,
+      "plastico": 5,
+      "organico": 15,
+      "resto": 5
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "media"
+    }
+  },
+  {
+    "id": "19",
+    "name": "Papelera HR-19",
+    "lat": 41.4300,
+    "lng": 2.1600,
+    "description": "Horta.",
+    "lastPickup": "2026-05-09T07:30:00+02:00",
+    "nextPickup": "2026-05-10T02:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 30,
+      "papel": 20,
+      "plastico": 25,
+      "organico": 30,
+      "resto": 35
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "baja",
+      "ratas": "baja",
+      "cerdos": "alta"
+    }
+  },
+  {
+    "id": "20",
+    "name": "Papelera CL-20",
+    "lat": 41.4080,
+    "lng": 2.1850,
+    "description": "El Clot.",
+    "lastPickup": "2026-05-09T08:00:00+02:00",
+    "nextPickup": "2026-05-10T03:00:00+02:00",
+    "wasteLevels": {
+      "cristal": 25,
+      "papel": 35,
+      "plastico": 30,
+      "organico": 40,
+      "resto": 20
+    },
+    "predictedFull": {},
+    "animals": {
+      "palomas": "media",
+      "ratas": "baja",
+      "cerdos": "baja"
+    }
+  }
+]

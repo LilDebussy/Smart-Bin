@@ -1,0 +1,18 @@
+---
+import "../styles/global.css";
+import { MapApp } from "@/components/MapApp";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Barcelona Map Base</title>
+  </head>
+
+  <body class="bg-background text-foreground">
+    <MapApp client:only="react" />
+  </body>
+</html>
