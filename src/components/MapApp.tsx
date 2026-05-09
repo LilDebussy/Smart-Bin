@@ -110,21 +110,21 @@ const WasteProgressNode = ({
 
       const puTimeStr = pickupTime.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
-      if (percentage >= 100) { // Considered Full
-        alertNode = (
-          <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-red-600 leading-tight">
-            <AlertTriangle size={12} className="mt-0.5 flex-shrink-0" />
-            <span>Se llenó a las {timeStr}. ({diffHrs}h antes de su recogida)</span>
-          </div>
-        );
-      } else { // Not full yet <= 99
-        alertNode = (
-          <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-red-600/90 leading-tight">
-            <AlertTriangle size={12} className="mt-0.5 flex-shrink-0" />
-            <span>Se llenará a las {timeStr} ({diffHrs}h antes de su recogida).</span>
-          </div>
-        );
-      }
+      // if (percentage >= 100) { // Considered Full
+      //   alertNode = (
+      //     <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-red-600 leading-tight">
+      //       <AlertTriangle size={12} className="mt-0.5 flex-shrink-0" />
+      //       <span>Se llenó a las {timeStr}. ({diffHrs}h antes de su recogida)</span>
+      //     </div>
+      //   );
+      // } else { // Not full yet <= 99
+      //   alertNode = (
+      //     <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-red-600/90 leading-tight">
+      //       <AlertTriangle size={12} className="mt-0.5 flex-shrink-0" />
+      //       <span>Se llenará a las {timeStr} ({diffHrs}h antes de su recogida).</span>
+      //     </div>
+      //   );
+      // }
     }
   }
 
