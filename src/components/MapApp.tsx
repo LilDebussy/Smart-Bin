@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
-import { Trash, Wine, FileText, Milk, Leaf, Trash2, Bird, Rat, PawPrint, BarChart2, List, Eye, EyeOff } from 'lucide-react';
+import { Trash, Wine, FileText, Milk, Leaf, Trash2, Bird, Rat, PawPrint, BarChart2, List, Eye, EyeOff, Maximize2, Download, ZoomIn, ZoomOut, Settings2, RefreshCw, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import {
@@ -119,12 +119,56 @@ const AnimalIcon = ({ type }: { type: string }) => {
   }
 }
 
-const AnimalBadge = ({ name, level }: { name: string, level: string }) => {
+// Deterministic fake stats per animal name
+function animalStats(name: string, period: 'dia' | 'semana' | 'mes') {
+  const seed = name.charCodeAt(0) + name.length;
+  const base = { dia: [3, 8], semana: [18, 52], mes: [72, 210] }[period];
+  const count = base[0] + (seed * 17) % (base[1] - base[0]);
+  const avg = (count / (period === 'dia' ? 1 : period === 'semana' ? 7 : 30)).toFixed(1);
+  const trend = seed % 3 === 0 ? 'up' : seed % 3 === 1 ? 'down' : 'flat';
+  return { count, avg, trend };
+}
+
+// Expanded badge (Avanzado)
+const AnimalBadge = ({ name, level, period }: { name: string; level: string; period: 'dia' | 'semana' | 'mes' }) => {
   const color = level === 'alta' ? 'red' : level === 'media' ? 'yellow' : 'green';
   const dotColor = color === 'red' ? 'bg-red-500' : color === 'yellow' ? 'bg-yellow-400' : 'bg-green-500';
+  const borderColor = color === 'red' ? 'border-red-500/20' : color === 'yellow' ? 'border-yellow-500/20' : 'border-border/30';
+  const bgColor = color === 'red' ? 'bg-red-500/5' : color === 'yellow' ? 'bg-yellow-500/5' : 'bg-secondary/10';
+  const { count, avg, trend } = animalStats(name, period);
+  const TrendIcon = trend === 'up' ? TrendingUp : trend === 'down' ? TrendingDown : Minus;
+  const trendColor = trend === 'up' ? 'text-red-400' : trend === 'down' ? 'text-green-400' : 'text-muted-foreground';
 
   return (
-    <div className={`flex items-center justify-between rounded-lg transition-colors`}>
+    <div className={`flex items-center justify-between rounded-lg border py-1.5 transition-colors ${borderColor} ${bgColor}`}>
+      <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-secondary/40 flex-shrink-0">
+          <AnimalIcon type={name} />
+        </div>
+        <div>
+          <span className="capitalize font-semibold text-[13px] text-foreground/90 block leading-tight">{name}</span>
+          <span className="text-[10px] text-muted-foreground leading-tight">
+            {count} avistamientos · <span className="text-foreground/60">x̄ {avg}/día</span>
+          </span>
+        </div>
+      </div>
+      <div className="flex flex-col items-end gap-0.5">
+        <div className="flex items-center gap-1">
+          <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground">{level}</span>
+          <div className={`w-1.5 h-1.5 rounded-full ${dotColor}`}></div>
+        </div>
+        <TrendIcon size={10} className={trendColor} />
+      </div>
+    </div>
+  );
+}
+
+// Compact badge (Simple) — classic look
+const AnimalBadgeSimple = ({ name, level }: { name: string; level: string }) => {
+  const color = level === 'alta' ? 'red' : level === 'media' ? 'yellow' : 'green';
+  const dotColor = color === 'red' ? 'bg-red-500' : color === 'yellow' ? 'bg-yellow-400' : 'bg-green-500';
+  return (
+    <div className="flex items-center justify-between rounded-lg transition-colors">
       <div className="flex items-center gap-2">
         <AnimalIcon type={name} />
         <span className="capitalize font-medium text-[13px] text-foreground/80">{name}</span>
@@ -388,8 +432,8 @@ const AvanzadoPanel = ({ poi }: { poi: POI }) => {
             <button
               key={label}
               className={`px-2.5 py-1 text-[11px] font-semibold rounded-md border transition-colors ${i === 0
-                  ? 'bg-foreground text-background border-foreground'
-                  : 'bg-transparent text-muted-foreground border-border hover:border-foreground/40 hover:text-foreground'
+                ? 'bg-foreground text-background border-foreground'
+                : 'bg-transparent text-muted-foreground border-border hover:border-foreground/40 hover:text-foreground'
                 }`}
             >
               {label}
@@ -411,8 +455,30 @@ const AvanzadoPanel = ({ poi }: { poi: POI }) => {
         </div>
       </div>
 
-      {/* Chart */}
+      {/* Chart toolbar + chart */}
       <div className="rounded-lg overflow-hidden border border-white/10">
+        {/* Toolbar */}
+        <div className="flex items-center justify-between px-2.5 py-1.5 bg-white/[0.03] border-b border-white/10">
+          <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Ocupación / tiempo</span>
+          <div className="flex items-center gap-0.5">
+            {[
+              { icon: ZoomIn, title: 'Ampliar' },
+              { icon: ZoomOut, title: 'Reducir' },
+              { icon: RefreshCw, title: 'Actualizar' },
+              { icon: Download, title: 'Exportar' },
+              { icon: Settings2, title: 'Configurar' },
+              { icon: Maximize2, title: 'Pantalla completa' },
+            ].map(({ icon: Icon, title }) => (
+              <button
+                key={title}
+                title={title}
+                className="p-1 rounded hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Icon size={12} />
+              </button>
+            ))}
+          </div>
+        </div>
         <MonitoringChart poi={poi} enabledTypes={enabled} />
       </div>
 
@@ -428,8 +494,8 @@ const AvanzadoPanel = ({ poi }: { poi: POI }) => {
                 key={key}
                 onClick={() => toggle(key)}
                 className={`flex items-center gap-1.5 px-2 py-1. 5 rounded-md border text-[11px] font-medium capitalize transition-all ${isOn
-                    ? 'border-white/20 bg-white/5 text-foreground'
-                    : 'border-border/30 bg-transparent text-muted-foreground/40 line-through'
+                  ? 'border-white/20 bg-white/5 text-foreground'
+                  : 'border-border/30 bg-transparent text-muted-foreground/40 line-through'
                   }`}
                 style={{ paddingTop: '5px', paddingBottom: '5px' }}
               >
@@ -461,6 +527,51 @@ const AvanzadoPanel = ({ poi }: { poi: POI }) => {
           <span className="inline-block w-px h-3 bg-white/30 mx-0.5" />
           Ahora
         </div>
+      </div>
+    </div>
+  );
+};
+// ─────────────────────────────────────────────
+//  Fauna Section
+// ─────────────────────────────────────────────
+const FAUNA_PERIODS = [
+  { key: 'dia' as const, label: 'Día' },
+  { key: 'semana' as const, label: 'Semana' },
+  { key: 'mes' as const, label: 'Mes' },
+];
+
+const FaunaSection = ({ animals, mode }: { animals: Record<string, string>; mode: 'simple' | 'avanzado' }) => {
+  const [period, setPeriod] = useState<'dia' | 'semana' | 'mes'>('dia');
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-medium text-foreground opacity-80 uppercase tracking-wider text-[11px]">Incidencias de fauna</h3>
+        {mode === 'avanzado' && (
+          <div className="flex items-center gap-0 rounded-md bg-secondary/30 p-0.5 border border-border/40">
+            {FAUNA_PERIODS.map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setPeriod(key)}
+                className={`px-2 py-0.5 text-[10px] font-semibold rounded transition-all ${period === key
+                  ? 'bg-background text-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+                  }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="flex flex-col gap-2">
+        {Object.entries(animals).map(([animal, level]) =>
+          mode === 'avanzado' ? (
+            <AnimalBadge key={animal} name={animal} level={level as string} period={period} />
+          ) : (
+            <AnimalBadgeSimple key={animal} name={animal} level={level as string} />
+          )
+        )}
       </div>
     </div>
   );
@@ -530,7 +641,7 @@ export function MapApp() {
       <Sheet open={!!selectedPoi} onOpenChange={(open) => {
         if (!open) setSelectedPoi(null);
       }}>
-        <SheetContent className="z-[9999] sm:max-w-sm w-full overflow-y-auto p-0 border-l">
+        <SheetContent className="z-[9999] sm:max-w-[440px] w-full overflow-y-auto p-0 border-l">
           {selectedPoi && (
             <div className="flex flex-col text-left">
               <div className="py-2 border-b bg-card">
@@ -555,8 +666,8 @@ export function MapApp() {
                     <button
                       onClick={() => setSheetTab('simple')}
                       className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-[12px] font-semibold transition-all ${sheetTab === 'simple'
-                          ? 'bg-background text-foreground shadow-sm'
-                          : 'text-muted-foreground hover:text-foreground'
+                        ? 'bg-background text-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
                         }`}
                     >
                       <List size={12} />
@@ -565,8 +676,8 @@ export function MapApp() {
                     <button
                       onClick={() => setSheetTab('avanzado')}
                       className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-[12px] font-semibold transition-all ${sheetTab === 'avanzado'
-                          ? 'bg-background text-foreground shadow-sm'
-                          : 'text-muted-foreground hover:text-foreground'
+                        ? 'bg-background text-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
                         }`}
                     >
                       <BarChart2 size={12} />
@@ -595,14 +706,7 @@ export function MapApp() {
                 </div>
 
                 {/* Fauna */}
-                <div>
-                  <h3 className="text-sm font-medium text-foreground mb-3 opacity-80 uppercase tracking-wider text-[11px]">Incidencias de fauna</h3>
-                  <div className="flex flex-col gap-2">
-                    {Object.entries(selectedPoi.animals).map(([animal, level]) => (
-                      <AnimalBadge key={animal} name={animal} level={level as string} />
-                    ))}
-                  </div>
-                </div>
+                <FaunaSection animals={selectedPoi.animals} mode={sheetTab} />
               </div>
             </div>
           )}
