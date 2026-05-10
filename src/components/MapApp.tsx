@@ -1,10 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
 import { Trash, AlertTriangle, Wine, FileText, Milk, Leaf, Trash2, Bird, Rat, PawPrint } from 'lucide-react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import poisData from '@/data/pois.json';
 
 import {
   Sheet,
@@ -38,8 +37,6 @@ export type POI = {
     [key: string]: string;
   };
 };
-
-const pois = poisData as POI[];
 
 const createIcon = (colorKey: 'red' | 'yellow' | 'green') => {
   const colorMap = {
@@ -176,6 +173,14 @@ const AnimalBadge = ({ name, level }: { name: string, level: string }) => {
 
 export function MapApp() {
   const [selectedPoi, setSelectedPoi] = useState<POI | null>(null);
+  const [pois, setPois] = useState<POI[]>([]);
+
+  useEffect(() => {
+    fetch('https://backend-production-1353.up.railway.app/api/bins')
+      .then(res => res.json())
+      .then(data => setPois(data))
+      .catch(err => console.error("Failed to fetch pois", err));
+  }, []);
 
   const position: [number, number] = [41.3874, 2.1686];
 
