@@ -176,10 +176,25 @@ export function MapApp() {
   const [pois, setPois] = useState<POI[]>([]);
 
   useEffect(() => {
-    fetch('https://backend-production-1353.up.railway.app/api/bins')
-      .then(res => res.json())
-      .then(data => setPois(data))
-      .catch(err => console.error("Failed to fetch pois", err));
+    const fetchPois = () => {
+      fetch('https://backend-production-1353.up.railway.app/api/bins')
+        .then(res => res.json())
+        .then(data => {
+          setPois(data);
+          // Update selectedPoi if it exists to reflect new data
+          setSelectedPoi(prev => {
+            if (!prev) return null;
+            const updated = data.find((p: POI) => p.id === prev.id);
+            return updated || prev;
+          });
+        })
+        .catch(err => console.error("Failed to fetch pois", err));
+    };
+
+    fetchPois(); // Initial fetch
+    const interval = setInterval(fetchPois, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const position: [number, number] = [41.3874, 2.1686];
