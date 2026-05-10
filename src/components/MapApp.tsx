@@ -192,7 +192,7 @@ export function MapApp() {
     };
 
     fetchPois(); // Initial fetch
-    const interval = setInterval(fetchPois, 5000);
+    const interval = setInterval(fetchPois, 1000);
 
     return () => clearInterval(interval);
   }, []);
